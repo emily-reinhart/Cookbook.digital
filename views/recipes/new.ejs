@@ -1,0 +1,47 @@
+<%- include("../partials/header") %>
+
+<div class="container formContainer">
+        <h2>Add a Recipe</h2>
+        <div class="recipeForm">
+            <form action="/recipes/type" method="POST">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input required class="form-control" type="text" name="title" placeholder="Title" autofocus>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input class="form-control" type="text" name="description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label>Cook Time (In Minutes)</label>
+                    <input class="form-control" type="text" name="time" placeholder="Time">
+                </div>
+                <div class="form-group">
+                    <label>Servings</label>
+                    <input class="form-control" type="text" name="servings" placeholder="# of Servings">
+                </div>
+                <div class="form-group">
+                    <label>Ingredients (Separated a by new line)</label>
+                    <textarea required class="form-control" required name="ingredients"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Steps (Separated a by new line)</label>
+                    <textarea required class="form-control" required name="steps"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input class="form-control" type="text" name="image" placeholder="URL">
+                </div>
+                <div class="form-group">
+                    <label>Recipe Link</label>
+                    <input class="form-control" type="text" name="url" placeholder="URL">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-md btn-block buttonOrange">Submit</button>
+                </div>
+            </form>
+            <a class="btn btn-md buttonWhite" href="/recipes">Go Back</a>
+        </div>
+    </div>
+
+<%- include("../partials/footer") %>

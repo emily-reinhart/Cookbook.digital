@@ -1,0 +1,80 @@
+<%- include("../partials/header") %>
+
+<script>
+    function myFunction() {    
+        // create new checkbox    
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "checkbox");
+        x.className += document.getElementById("newtag").value;
+        x.className += " delete";
+        x.name = "[tag]";
+        x.value = document.getElementById("newtag").value;
+        x.setAttribute("checked", "true");
+
+        // create new delete icon
+        var icon = document.createElement('i');
+        icon.className = "far fa-times-circle";
+        icon.id = document.getElementById("newtag").value;
+
+        // create new label
+        var label = document.createElement('label');
+        label.htmlFor = document.getElementById("newtag").value;
+        var newlabel = " " + document.getElementById("newtag").value;
+        label.appendChild(icon);
+        label.appendChild(document.createTextNode(newlabel));
+        label.setAttribute("onclick", "delFn(this)");
+        
+        // create linebreak
+        var lineBreak = document.createElement("br");
+        lineBreak.id = "break"+document.getElementById("newtag").value;
+
+        // add new elements to html
+        document.getElementById("newtag").value = "";
+        document.getElementById("allTags").append(x);
+        document.getElementById("allTags").append(label);
+        document.getElementById("allTags").append(lineBreak);
+    }
+    function delFn(label){
+        var tagName = label.htmlFor;
+        // hide icon
+        document.getElementById(tagName).classList.toggle("deleted");
+        // hide linebreake
+        document.getElementById("break"+tagName).classList.toggle("deleted");
+
+        var check = document.getElementsByClassName(tagName)[0];
+        check.toggleAttribute('checked');
+        // hide checkbox
+        check.classList.toggle("deleted");
+        // hide label
+        label.classList.toggle("deleted");              
+    }
+</script>
+
+<div class="container">
+    <div class="jumbotron" style="text-align: left; padding: 10px 20px; margin-bottom: 20px;">
+        <h3>Edit Tags</h3>
+        <p>Click a tag to delete</p>
+    </div>
+    
+    <div class="jumbotron" style="text-align: justify; background-color: transparent; padding-top: 5px; margin-top: 10px;">
+        <form action="/recipes/tags?_method=PUT" method="POST" style="width: 100%;">
+            <div id="allTags" style="width: 100%;">
+                <% tags.forEach(function(tag){ %>
+                    <input type="checkbox" class="delete <%= tag %>" name="[tag]" value="<%= tag %>" checked>
+                    <label id="checkLabel<%= tag %>" for="<%= tag %>" onclick="delFn(this)"><i class="far fa-times-circle" id="<%= tag %>"></i> <%= tag %></label>
+                    <br id="break<%= tag %>">
+                <% }) %>
+            </div>
+            <div  style="display: flex; width: 100%;">
+                <input type="text" id="newtag" name="tag" style="width: 100%;" onkeydown="return (event.keyCode!=13);">
+                <button style="margin-left: 3px;" class="btn buttonOrange" onclick="myFunction()" type="button"><i class="fas fa-plus"></i></button>
+            </div>
+            <button class="btn buttonOrange" type="submit" style="margin-top: 3px; width: 100%;">Done</button>
+        </form>
+    </div>
+        
+            
+    
+</div>
+
+<%- include("../partials/footer") %>

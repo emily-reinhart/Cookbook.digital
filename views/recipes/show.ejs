@@ -1,0 +1,147 @@
+<%- include("../partials/header") %>
+
+<script>
+    $(document).ready(function() {
+        if($(window).width() < 959) {
+            $('#drop').addClass('dropdown-menu-right');
+            $('#drop').removeClass('dropdown');
+        }
+    });
+    function myFunction() {        
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "checkbox");
+        x.setAttribute("checked", "true");
+        x.name = "[tag]";
+        x.id = "newTag";
+        x.value = document.getElementById("newtag").value;
+        var label = document.createElement('label');
+        label.htmlFor = "newTag";
+        var newlabel = document.getElementById("newtag").value;
+        label.appendChild(document.createTextNode(newlabel));
+        var lineBreak = document.createElement("br");
+        document.getElementById("newtag").value = "";
+        document.getElementById("allTags").append(x);
+        document.getElementById("allTags").append(label);
+        document.getElementById("allTags").append(lineBreak);
+        // var show = document.getElementById("drop");
+        // console.log(show);
+        // show.classList.toggle("show");
+        // console.log("show");
+    }
+</script>
+
+<div class="container showMore">
+
+    <header class="jumbotron">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="image">
+                        <img class="card-img-top" src="<% if(!recipe.image){ %>
+                            https://storage.googleapis.com/emilysrecipebook/noun_Cookbook_979557_plain.png
+                        <% }else{ %>
+                            <%= recipe.image %>
+                        <% } %>"" alt="Recipe Image">        
+                    </div>
+                </div>
+                <div class="col-md-9" id="titleJumbo">
+                    <div class="card-body">
+                        <h3 class="card-title"><%= recipe.title %></h3>
+                        <h6 class="card-subtitle mb-2 text-muted">Cook Time: <%= recipe.time %></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Servings: <%= recipe.servings %></h6>
+                        <% if(!recipe.description){ %>
+                            <p class="card-text" id="noDesc">Description...</p>
+                        <% } else { %>
+                            <p class="card-text"><%= recipe.description %></p>
+                        <% } %>
+
+                        <div class="row">
+                            <div class="col-sm-8 buttonCol">
+                                <% if(currentUser){ %>
+                                    <a href="<%= recipe._id %>/edit" class="btn btn-success">EDIT</a>
+                                    <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are You Sure You Want to Delete?');">
+                                        <button class="btn btn-danger">DELETE</button>
+                                    </form>
+                                <% } %>
+                                
+                                <% if(!recipe.url){ %>
+                                    <a href="#" class="btn buttonOrange">Recipe Link</a>
+                                <% }else{ %>
+                                    <a href="<%= recipe.url %>" class="btn buttonOrange">Recipe Link</a>
+                                <% } %>
+                            </div>
+                            <div class="col-sm-4 buttonCol">
+                                <% if(currentUser){ %>
+                                    <div class="dropdown" id="drop" style="display: inline;">
+                                        <button class="btn buttonOrange dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Tags</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <form style="margin: 5px;" action="/recipes/<%= recipe._id %>/tags?_method=PUT" method="POST">
+                                            <div id="allTags">
+                                                <% if (tags){ %>
+                                                    <% tags.forEach(function(tag){ %>
+                                                        <% if(recipe.tags.includes(tag)){ %>
+                                                            <input type="checkbox" id="<%= tag %>" name="[tag]" value="<%= tag %>" checked>
+                                                            <label for="<%= tag %>"><%= tag %></label>
+                                                            <br>
+                                                        <% } else {%>
+                                                            <input type="checkbox" id="<%= tag %>" name="[tag]" value="<%= tag %>">
+                                                            <label for="<%= tag %>"><%= tag %></label>
+                                                            <br>
+                                                        <% } %>
+                                                    <% }) %>
+                                                <% } %>
+                                            </div>
+                                            <div style="display: flex;">
+                                                <input type="text" id="newtag" name="tag"  onkeydown="return (event.keyCode!=13);">
+                                                <button style="margin-left: 3px;" class="btn buttonOrange" onclick="myFunction()" type="button"><i class="fas fa-plus"></i></button>
+                                            </div>                    
+                                            <button class="btn buttonOrange" type="submit" style="margin-top: 3px;">Submit</button>
+                                        </form>                                                  
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+
+                        </div>
+                        
+                        
+                        
+
+                    </div>
+                </div> 
+            </div>     
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ingredients</h5>
+                    <ul class="list-group list-group-flush">
+                        <% recipe.ingredients.forEach(function(item){ %>
+                            <li class="list-group-item"><%= item %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="col-md 8">
+            <div class="card">
+                <div class="card-body" id="steps">
+                    <h5 class="card-title">Directions</h5>
+                    <ol class="list-group list-group-flush">
+                        <% recipe.steps.forEach(function(step){ %>
+                            <li class="list-group-item"><%= step %></li>
+                        <% }); %>
+                    </ol>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn buttonOrange" href="/recipes">Back to All</a>
+</div>
+
+<%- include("../partials/footer") %>

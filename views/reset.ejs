@@ -1,0 +1,24 @@
+<%- include("./partials/header") %>
+
+<div class="container formContainer">
+    <h2>Reset Passord</h2>
+    <div class="recipeForm">
+        <form action="/reset/<%= token %>" method="POST">
+            <div class="form-group">
+                <label for="password">New Password</label>
+                <input class="form-control" type="password" name="password" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="confirm">Confirm Passord</label>
+                <input class="form-control" type="password" name="confirm">
+            </div>
+            <div class="form-group">
+                <input class="btn buttonOrange" type="submit" value="Update Passord">
+            </div>
+        </form>
+        <a href="/login"><p>Login</p></a>
+        <a href="/register"><p>Don't have an account? Register!</p></a>
+    </div>
+</div>
+
+<%- include("./partials/footer") %>

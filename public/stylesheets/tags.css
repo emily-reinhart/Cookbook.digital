@@ -1,0 +1,87 @@
+#container h1 {
+	background-color: #b2dbd5;
+	color: black;
+	margin: 0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: normal;
+}
+#tags ul {
+	margin: 0;
+	padding: 0;
+}
+#tags li {
+	list-style: none;
+	background-color: white;
+	height: 40px;
+	line-height: 40px;
+	color: #666;
+}
+#tags li:nth-child(2n) {
+	background-color: #f7f7f7;
+}
+#tags li:hover button {
+	width: 40px;
+	opacity: 1.0;
+}
+#tags button {
+	background-color: #e74c3e;
+	margin-right: 20px;
+	text-align: center;
+	color: white;
+	width: 0px;
+	opacity: 0;
+	display: inline-block;
+	transition: 0.2s linear;
+	border: none;
+}
+#container input {
+	font-size: 18px;
+	background-color: #f7f7f7;
+	width: 100%;
+	padding: 13px 13px 13px 20px;
+	box-sizing: border-box;
+	color: #2980b9;
+	border: 3px solid rgba(0, 0, 0, 0);
+}
+#container input:focus {
+	background-color: white;
+	border: 3px solid #2980b9;
+	outline: none;
+}
+
+#container {
+	width: auto;
+	margin-top: 20px;
+	background-color: #f7f7f7;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.completed {
+	color: grey;
+	text-decoration: line-through;
+}
+h1 .fa-plus {
+	float: right;
+}
+.delete {
+	display: none;
+}
+.notDeleted {
+	border: 1px solid black;
+	border-radius: 25px;
+	color: transparent;
+}
+.deleted {
+	/* color: red;
+    border: none; */
+	height: 0px;
+	width: 0px;
+	display: none;
+}
+label:hover .far {
+	color: red;
+}
+.far:hover {
+	color: red;
+}

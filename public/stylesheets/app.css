@@ -1,0 +1,93 @@
+.navbar-dark {
+	background-color: #2b616d;
+}
+.jumbotron {
+	margin-top: 20px;
+	padding-bottom: 5px;
+	padding-top: 25px;
+	text-align: center;
+	background: rgba(178, 219, 213);
+}
+.jumbotron.mainJumbo {
+	background: rgba(178, 219, 213, 0.99) url('../images/bruna-branco-citrus-cropped3.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-blend-mode: overlay;
+}
+.card {
+	margin-bottom: 20px;
+}
+.buttonOrange {
+	background-color: #fa8d62;
+	border-color: #fa8d62;
+	color: white;
+}
+.buttonOrange:hover {
+	background-color: #ef823e;
+	border-color: #ef823e;
+	color: white;
+}
+.buttonWhite {
+	background-color: transparent;
+	border-color: #fa8d62;
+	color: #fa8d62;
+}
+.buttonWhite:hover {
+	background-color: #fa8d62;
+	color: white;
+	border-color: #fa8d62;
+}
+.buttonWhite:active {
+	background-color: #fa8d62;
+	color: white;
+	border-color: #fa8d62;
+}
+.btn-success {
+	background-color: #74c17d;
+	border-color: #74c17d;
+}
+.btn-danger {
+	border-color: #d0746e;
+	background-color: #d0746e;
+}
+/* FORMS */
+.formContainer h2 {
+	text-align: center;
+	margin-top: 20px;
+}
+.recipeForm {
+	width: 50%;
+	margin: 25px auto;
+}
+.formContainer p {
+	text-align: center;
+	margin: 5px;
+}
+.formContainer h6 {
+	text-align: center;
+	margin: 5px;
+}
+/* Medium and smaller */
+@media only screen and (max-width: 768px) {
+	.recipeForm {
+		width: 90%;
+	}
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
